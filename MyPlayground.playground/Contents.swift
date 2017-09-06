@@ -143,3 +143,42 @@ var educatedDegree:String? = nil
 var doesEducated:String = educatedDegree ?? "Has no education history"
 educatedDegree = "School degree"
 doesEducated = educatedDegree ?? "Has no education history"
+
+
+//Arrays
+var arr1:[Int] = [1,2,3,4,5]
+var arr2:[String] = ["Ali", "Ahmed", "Mohammed"]
+var arr3:[Any] = ["Mohammed", 20, 99.8, false, "A"]
+var arr4:[Bool] = []
+var arr5:[Character] = [Character]()
+arr5 = Array(repeatElement("A", count: 5))
+var arr6:[[Any]] = [arr1, arr2, arr3, [1,2]]
+arr6[0][0]
+arr6[1][0]
+
+arr6.count
+arr6[0].count
+var arr7 = [1,2,3,4] + [5,6,7,8]
+arr7 += [9, 10]
+arr7.contains(10)
+arr7.append(11)
+arr7[0...5] = [3]
+//arr7.insert(0, at: 0)
+//arr7.remove(at: 0)
+//arr7.removeAll()
+
+for x in arr7[2...] {
+    print(x)
+}
+print("-")
+for x in arr7[...2] {
+    print(x)
+}
+print("-")
+for x in arr7[..<2] {
+    print(x)
+}
+print("-")
+for x in 1...10{
+    print(x)
+}
