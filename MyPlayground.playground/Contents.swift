@@ -144,7 +144,6 @@ var doesEducated:String = educatedDegree ?? "Has no education history"
 educatedDegree = "School degree"
 doesEducated = educatedDegree ?? "Has no education history"
 
-
 //Arrays
 var arr1:[Int] = [1,2,3,4,5]
 var arr2:[String] = ["Ali", "Ahmed", "Mohammed"]
@@ -182,3 +181,172 @@ print("-")
 for x in 1...10{
     print(x)
 }
+
+//Conditions
+let pstatus:Bool? = nil
+let mstatus:Bool? = true
+
+if pstatus == false {
+    print("false")
+}
+
+if pstatus == false {
+    print("false")
+}else if pstatus == true{
+    print("true")
+}else{
+    print("none")
+}
+
+if pstatus ?? false && mstatus ?? false {
+    print("passed")
+}
+
+if !(pstatus ?? false) || !(mstatus ?? false) {
+    print("not passed")
+}
+
+if pstatus ?? false {
+    if mstatus ?? false {
+        print("passed")
+    }
+}
+
+var firstChar:Character = "A"
+switch firstChar {
+case "A" :
+    print("A")
+case "B" :
+    print("A")
+default :
+    print ("None")
+}
+
+
+var firstInt:Int = 1
+switch firstInt {
+case 1,2,3 :
+    print("123")
+case 4 :
+    print("2")
+default :
+    print ("None")
+}
+
+for x in 1...10 {
+    print(x)
+}
+
+var counter:Int = 10
+while counter >= 1 {
+    print (counter)
+    counter = counter - 1
+}
+
+
+var grade:Int = 80
+
+switch grade {
+case 100:
+    print ("Very Very good")
+case 90...99:
+    print ("Very good")
+case 80..<90:
+    print ("Good")
+case 1..<80:
+    print ("failed")
+default:
+    print ("unkown")
+}
+
+//Nilable variables
+var gradeOption:Int? = 20
+
+if gradeOption != nil{
+    print(gradeOption!)
+}
+
+if let gradeValue = gradeOption{
+    print(gradeValue)
+}
+
+func printGrade(gradeOption:Int?){
+    guard let gradeVal = gradeOption else {
+        return
+    }
+    print(gradeVal)
+}
+
+printGrade(gradeOption: 90)
+printGrade(gradeOption: nil)
+
+//Loops
+var loopcounter = 10
+while loopcounter >= 1 {
+    print("while loop \(loopcounter)")
+    loopcounter = loopcounter - 1
+}
+
+loopcounter = 1
+repeat{
+    print("repeat = \(loopcounter)")
+    loopcounter = loopcounter - 1
+}while loopcounter >= 1
+
+for c in 1...10{
+    print("for \(c)")
+}
+
+for _ in 1...5{
+    print("for iteration")
+}
+
+for x in stride(from: 0, to: 10, by: 2){
+    print(x)
+}
+
+var arr20:[(Int, Int)] = [(1,2), (3, 4)]
+for (x, y) in arr20{
+    print ("\(x) - \(y)")
+}
+
+outerloop: for x in 1...10{
+    for y in 1...10{
+        if x == 5 {
+            break outerloop
+        }
+        print("\(x) - \(y)")
+    }
+}
+
+//Functions
+func fun2() {
+    print("Fun2")
+}
+
+func fun3() {
+    print("Fun3")
+}
+var arrOfFunc:[()->()] = []
+arrOfFunc.append(fun2)
+arrOfFunc.append(fun3)
+arrOfFunc[0]()
+arrOfFunc[1]()
+
+
+func fun1() {
+    print("fun1")
+}
+
+func welcome(name:String) {
+    print("Welcome \(name)")
+}
+
+var array:[Any] = [fun1, welcome]
+(array[0] as! ()->())()
+(array[1] as! (String)->())("Mohammed")
+
+
+var dic = [0: fun1,
+           1: fun2]
+dic[0]!()
