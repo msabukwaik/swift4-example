@@ -350,3 +350,72 @@ var array:[Any] = [fun1, welcome]
 var dic = [0: fun1,
            1: fun2]
 dic[0]!()
+
+func printValue()->(){
+    print("str")
+}
+
+
+
+
+func testReturn(){
+    print("before return")
+    return
+    print("after return")
+}
+testReturn()
+
+func sayNum(number num1:Int){
+    print("\(num1)")
+}
+
+sayNum(number:20)
+
+func printNum(num num:Int, _ num2:Int, num3 num3:Int){
+    print("\(num)")
+}
+
+printNum(num: 200, 300, num3:444)
+
+func defaultParameters(p1 parm1:String = "1", _ parm2:String = "2", p3 parm3:String = "3"){
+    print("p1 \(parm1) - p2 \(parm2) - p3 \(parm3) ")
+}
+
+defaultParameters(p1:"22", p3:"33")
+
+var ex1:Int = 20
+var ex2:Int = 30
+
+func exchageVars(firstNumber num1:inout Int, secondNumber num2:inout Int){
+    var temp:Int = num1
+    num1 = num2
+    num2 = temp
+}
+
+exchageVars(firstNumber: &ex1, secondNumber: &ex2)
+print("var 1 = \(ex1) , var2 = \(ex2)")
+
+
+//variadic paramters
+func calcNums(_ nums:Int...) -> Int{
+    var total = 0
+    for x in nums{
+        total += x
+    }
+    return total
+}
+print(calcNums(1,2,3,4,5))
+
+func getUserInfo() -> (String, Int, String, Bool){
+    return ("Mohammed", 20, "wwb", true)
+}
+
+let (i1,i2,i3,i4) = getUserInfo()
+
+func getCallBack(callbackFunc:()->()){
+    let (i1, i2, i3, i4) = getUserInfo()
+    print("\(i1) - \(i2) - \(i3) - \(i4)")
+    callbackFunc()
+}
+
+getCallBack(callbackFunc:printValue)
