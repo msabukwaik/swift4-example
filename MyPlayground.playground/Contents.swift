@@ -419,3 +419,174 @@ func getCallBack(callbackFunc:()->()){
 }
 
 getCallBack(callbackFunc:printValue)
+
+
+//Classes
+public class Student{
+    var name:String
+    var testVar:String?
+    var credit:Float = 0{
+        willSet(newValue){
+            print("will set has been called with currentValue = \(self.credit) newValue = \(newValue)")
+        }
+        
+        didSet(oldValue){
+            print("did set has been called with current value = \(self.credit) and oldValue = \(oldValue)")
+            if self.credit < 0{
+                self.credit = oldValue
+                print("Invalid operation student can not has negative credit")
+            }
+        }
+    }
+    
+    /*var credit:Float = 0{
+        willSet{
+            print("will set has been called with currentValue = \(self.credit) newValue = \(newValue)")
+        }
+        
+        didSet{
+            print("did set has been called with current value = \(self.credit) and oldValue = \(oldValue)")
+            if self.credit < 0{
+                self.credit = oldValue
+                print("Invalid operation student can not has negative credit")
+            }
+        }
+    }*/
+    var debit:Float = 0
+    var marks:[String:Int] = ["GradeA": 80, "GradeB" : 90]
+    
+    lazy var footerInfo:String = "Thanks for watching this"
+    
+    var lastName:String!
+    
+    var balance:Float{
+        set(new){
+            self.credit = new
+        }
+        
+        get{
+            return self.credit - self.debit
+        }
+    }
+    
+    public var totalGrade:Float{
+        get{
+            var sum:Float = 0
+            for v in marks.values{
+                sum += Float(v)
+            }
+            return sum/Float(marks.count)
+        }
+    }
+    
+    /*var totalGrade:Float{
+            var sum:Float = 0
+            for v in marks.values{
+                sum += Float(v)
+            }
+            return sum/Float(marks.count)
+    }*/
+    static var welcomeMsg:String = "Welcome"
+    static func sayHi(){
+        print(welcomeMsg)
+    }
+    
+    class func sayHi2(){
+        print(welcomeMsg)
+    }
+    
+    init(){
+        name = ""
+    }
+    
+    init(_ n:String){
+        name = n
+    }
+}
+
+let s:Student = Student("hello sami")
+print(s.name)
+print(s.totalGrade)
+print("credit = \(s.credit) debit = \(s.debit) balance = \(s.balance)")
+s.credit = 100
+s.credit = -200
+s.debit = 50
+print("credit = \(s.credit) debit = \(s.debit) balance = \(s.balance)")
+print(Student.welcomeMsg)
+Student.sayHi()
+Student.sayHi2()
+
+//Inheritance
+class a{
+    var a:String!
+    init(a:String?){
+        self.a = a ?? "Empty a"
+    }
+    func sayHi1(){
+        print("Hi a = \(a ?? "Empty a")")
+    }
+}
+
+class b: a{
+    var b:String!
+    var testVar:String?{
+        print("test Var getter inside the b class")
+        return "test"
+    }
+    init(b:String?){
+        super.init(a: nil)
+        self.b = self.b ?? "Empty b"
+    }
+    func sayHi2() {
+        print("Hi b = \(self.b ?? "Empty b")")
+    }
+}
+
+class c: b{
+    var c:String!
+    
+    override var testVar: String?{
+        print("test Var getter inside the c class")
+        print("test var = \(super.testVar ?? "")")
+        return "Hi every body"
+    }
+    
+    init (_ c:String?){
+        super.init(b: nil)
+        self.c = c ?? "Empty c"
+    }
+    
+    init (a:String?, b:String?, c:String?){
+        super.init(b: nil)
+        if let temp = a{
+            self.a = temp
+        }
+        
+        if let temp = b {
+            self.b = temp
+        }
+        
+        if let temp = c {
+            self.c = temp
+        }
+    }
+    
+    override func sayHi1() {
+        print("overrited sayHi1 method")
+    }
+    
+    func sayHi3(){
+        print("Hi c = \(c ?? "Empty c")")
+    }
+}
+
+var cclass:c = c(nil)
+cclass.sayHi1()
+cclass.sayHi2()
+cclass.sayHi3()
+
+var cclass2:c = c(a:"1", b:"2", c:"3")
+cclass2.sayHi1()
+cclass2.sayHi2()
+cclass2.sayHi3()
+print(cclass2.testVar ?? "")
