@@ -590,3 +590,129 @@ cclass2.sayHi1()
 cclass2.sayHi2()
 cclass2.sayHi3()
 print(cclass2.testVar ?? "")
+
+
+class person{
+    var name:String = "Unknown"
+    init() {
+        
+    }
+}
+
+var p:person = person()
+p.name
+var pp2:person = p
+pp2.name = "Ahmed"
+p.name
+
+struct teacher{
+    var name:String{
+        set(newValue){
+            self.name = "Unknown"
+        }
+        get{
+            return "get has been called"
+        }
+    }
+    var age:Int{
+        willSet(newValue){
+            print("will set has been taken place")
+        }
+        
+        didSet(oldValue){
+            print("didset has been taken ")
+        }
+    }
+    var id:Int
+    var married:Bool
+    var firstNameChar:Character
+    static var staticVar:String = "static variable inside the struct"
+    
+    mutating func setTeacherInfo(_id:Int, _married:Bool, _firstNameChar:Character){
+        self.id = _id
+        self.married = _married
+        self.firstNameChar = _firstNameChar
+    }
+    
+    static func setStaticVar(_value:String){
+        staticVar = _value
+    }
+    
+    static func getStaticVar() -> String {
+        return staticVar
+    }
+}
+
+var t:teacher = teacher( age: 2, id: 3, married: true, firstNameChar: "M")
+t.age = 100
+print(t.age)
+t.setTeacherInfo(_id: 33, _married: true, _firstNameChar: "A")
+print(t.age)
+
+//Enum
+enum userDegree{
+    case good
+    case very_good
+    case failed
+}
+
+enum userDegree2 : String{
+    case good = "Congradulation your degree is good"
+    case very_good = "Congradulation your degree is very good"
+    case failed = "Opps hard luck"
+}
+
+enum userDegree3 : Int{
+    case good = 1
+    case very_good = 2
+    case failed = 3
+}
+
+enum general{
+    case ups(Int, Int, Int)
+    case weight(Int)
+}
+
+var myDegree:userDegree = .very_good
+print(myDegree)
+var myDegree2:userDegree2 = .very_good
+print(myDegree2.rawValue)
+var myDegree3:userDegree3 = .very_good
+print(myDegree3.rawValue)
+var gen:general = .ups(1,2,3)
+
+switch gen{
+case .ups(let var1, let var2, let var3):
+    print ("var 1 = \(var1) - var 2 \(var2) - var3 \(var3)")
+case .weight(var val):
+    print(val)
+}
+
+
+gen = .weight(20)
+
+switch gen{
+case .ups(let var1, let var2, let var3):
+    print ("var 1 = \(var1) - var 2 \(var2) - var3 \(var3)")
+case .weight(var val):
+    print(val)
+}
+
+switch myDegree {
+case .good:
+    print("good")
+case .very_good:
+    print("very good")
+case .failed:
+    print("failed")
+default:
+    print("Unknown")
+}
+
+enum mix{
+    case normal
+    indirect case mixDegree(userDegree)
+}
+
+var m:mix = .normal
+m = .mixDegree(myDegree)
